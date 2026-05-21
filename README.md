@@ -1,8 +1,28 @@
 # Xonix 1.4
 
-A classic **Xonix** arcade game clone.
+A modified version of the classic **Xonix** game.
 
-Классическая аркадная игра **Xonix**.
+Модифицированная версия классической игры **Xonix**.
+
+---
+
+## ✨ Modification / Изменения
+
+### 🇬🇧 English
+
+The main modification in this version is the ability to **start the game from any level**.
+
+You can launch the game directly from a selected level using a command line argument.
+
+Supported levels: **1–9**.
+
+### 🇷🇺 Русский
+
+Главное изменение в данной версии — возможность **запуска игры с любого уровня**.
+
+Теперь игру можно запускать сразу с выбранного уровня через аргумент командной строки.
+
+Доступные уровни: **1–9**.
 
 ---
 
@@ -10,7 +30,7 @@ A classic **Xonix** arcade game clone.
 
 ### Build
 
-To compile the game, run:
+Compile the game with:
 
 ```bash
 make -s Makefile.std
@@ -18,7 +38,7 @@ make -s Makefile.std
 
 ### Run
 
-Start the game with:
+Launch the game:
 
 ```bash
 ./xonix <level_number>
@@ -28,7 +48,7 @@ Where:
 
 - `<level_number>` — a number from `1` to `9`
 
-Example:
+Examples:
 
 ```bash
 ./xonix 1
@@ -74,7 +94,7 @@ make -s Makefile.std
 
 ---
 
-## Gameplay
+## 🎮 Gameplay / Игровой процесс
 
 Move around the field, capture territory, and avoid enemies.
 
