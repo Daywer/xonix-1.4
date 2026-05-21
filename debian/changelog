@@ -1,0 +1,427 @@
+xonix (1.4-36) unstable; urgency=medium
+
+  * Declare compliance with Policy 4.7.0 with no changes.
+  * Add the year 2024 to my debian/* copyright notice.
+  * Drop the unused libselinux-dev build dependency.
+  * Include dpkg's default.mk for completeness.
+  * Declare dpkg-build-api v1, drop the implied Rules-Requires-Root: no.
+  * Let dpkg's buildtools.mk set CC appropriately.
+  * Switch to debhelper compat level 14:
+    - use X-DH-Compat
+    - pass --destdir to dh_auto_install
+    - let debhelper handle some dependencies automatically
+  * Use dh-package-notes to record ELF metadata.
+  * Use debputy's X-Style: black.
+
+ -- Peter Pentchev <roam@debian.org>  Mon, 30 Dec 2024 00:14:59 +0200
+
+xonix (1.4-35) unstable; urgency=medium
+
+  * Declare compliance with Policy 4.6.1 with no changes.
+  * Add the years 2021 and 2022 to my debian/* copyright notice.
+  * Explicitly declare dh-sequence-single-binary.
+  * Drop maintainer script handling for versions before 1.4-32;
+    even oldstable has 1.4-32 now.
+
+ -- Peter Pentchev <roam@debian.org>  Mon, 12 Sep 2022 13:19:17 +0300
+
+xonix (1.4-34) unstable; urgency=medium
+
+  * Drop the unnecessary GCC B-D reminder, it may cause problems for
+    porting and cross-building.
+
+ -- Peter Pentchev <roam@debian.org>  Sun, 02 Aug 2020 02:39:59 +0300
+
+xonix (1.4-33) unstable; urgency=medium
+
+  * Correct the Name and Comment fields in the desktop file.
+    Closes: #964379
+  * Add the year 2020 to my debian/* copyright notice.
+  * Fix a misleadlingly-indented line in xonix.c.
+  * Use _DEFAULT_SOURCE instead of (_BSD|_SVID)_SOURCE.
+  * Note no upstream to forward the warnings patch to.
+  * Declare compliance with Policy 4.5.0 with no changes.
+  * Drop the --as-needed linker option, add a GCC B-D.
+  * Reflow and sort the list of build dependencies.
+  * Use debhelper compat level 13 and execute_after.
+
+ -- Peter Pentchev <roam@debian.org>  Thu, 16 Jul 2020 13:18:50 +0300
+
+xonix (1.4-32) unstable; urgency=medium
+
+  [ Jari Aalto ]
+  * debian/control
+    - (Standards-Version): Update to 3.9.8.
+    - (Vcs-*): Update to anonscm.debian.org.
+  * debian/copyright
+    - Update URLs.
+  * debian/menu
+    - Delete. Superseded by debian/xonix.desktop file.
+  * debian/patches
+    - (30): Fix new typo in manual page.
+
+  [ Peter Pentchev ]
+  * New maintainer.  Closes: #920121
+  * Add my debian/* copyright notice.
+  * Point the Vcs-* fields to the new Salsa repository.
+  * Remove mentions of the FreeBSD ports mirror.
+  * Bring up to compliance with Debian Policy 4.3.0:
+    - add Rules-Requires-Root to the source control stanza
+  * Bump the debhelper compatibility level to 12 with no changes and
+    use the debhelper-compat (= 12) mechanism.
+  * Declare Multi-Arch: foreign for the binary package.
+  * Use single quotes in the rules file.
+  * Drop the "check pointer before free()" patch; it is safe to pass
+    a null pointer to free(3).
+  * Drop the XBM unsigned -> signed patches; the arrays contain values in
+    the range 0 - 255, so unsigned char is the correct type.
+  * Add the warnings patch to fix some warnings from GCC and cppcheck.
+  * Add a simple git-buildpackage config file.
+  * Install the resource file into the app-defaults directory, not into
+    its subdirectory.  Closes: #878802
+
+ -- Peter Pentchev <roam@debian.org>  Tue, 26 Feb 2019 00:29:14 +0200
+
+xonix (1.4-31) unstable; urgency=low
+
+  * debian/debian-vars.mk
+    - Delete. No longer used.
+  * debian/control
+    - (Standards-Version): Update to 3.9.5.
+    - (Vcs-*): Update to anonscm.debian.org.
+  * debian/copyright
+    - Update year.
+    - (Comment): Add author's homepage.
+  * debian/source/include-binaries
+    - New file.
+  * debian/<package>.<file>
+    - Rename to plain: manpages, install, dirs
+  * debian/xonix.{desktop,png}
+    - Add desktop file and icon (Closes: #738074).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Tue, 08 Apr 2014 09:02:22 +0300
+
+xonix (1.4-30) unstable; urgency=low
+
+  * debian/control
+    - (Standards-Version): Update to 3.9.4.
+  * debian/patches
+    - (50): New. Check calling free() to avoid crash on double freeing
+      memory (Closes: #688580).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sat, 29 Sep 2012 09:30:12 +0300
+
+xonix (1.4-29) unstable; urgency=low
+
+  * debian/compat
+    - Update to 9
+  * debian/control
+    - (Build-Depends): Update to debhelper 9.
+  * debian/copyright
+    - Update to format 1.0.
+  * debian/rules
+    - Use hardened CFLAGS; enable all hardening.
+      http://wiki.debian.org/ReleaseGoals/SecurityHardeningBuildFlags
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sat, 24 Mar 2012 03:20:28 -0400
+
+xonix (1.4-28) unstable; urgency=low
+
+  * debian/control
+    - (Build-Depends) Replace [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386]
+      with [linux-any] wild card to cover any future architecture.
+      Patch thanks to Robert Millan <rmh@debian.org> (Closes: #634326).
+      Remove unused libxp-dev (Closes: #623658).
+  * debian/rules
+    - (CC): New. Define for imake.
+    - Simplify everything already handled by dh(1).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Tue, 20 Sep 2011 12:12:06 +0300
+
+xonix (1.4-27) unstable; urgency=low
+
+  * debian/changelog
+    - Correct line placement in 1.4-26.
+  * debian/compat
+    - Update to 8.
+  * debian/control
+    - (Build-Depends): update debhelper 8.
+    - (Standards-Version): Update to 3.9.2.
+    - (Conflicts): Remove. There is not package suidmanager any longer in
+      archives.
+  * debian/copyright
+    - Update to DEP5.
+  * debian/patches
+    - (13): New. Remove double free() call (Closes: #623547).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Thu, 21 Apr 2011 10:24:54 +0300
+
+xonix (1.4-26) unstable; urgency=low
+
+  * debian/control
+    - (Build-Depends): update debhelper to 7.1 due to override in
+      debian/rules.
+    - (Standards-Version): Update to 3.8.4.
+  * debian/debian-vars.mk
+    - Remove. Obsolete by dh(1) changes in debian/rules.
+  * debian/patches
+    - (10-makefile=11): Change score file from /var/games to
+      FHS compliant /var/cache/xonix directory.
+  * debian/postinst
+    - Relocate scores to /var/cache/xonix/xonix.scores.
+  * debian/postrm
+    - Handle new directories.
+  * debian/rules
+    - Remove rules that can be done with dh(1).
+  * debian/xonix.dirs
+    - Add var/cache/xonix. This creates game score directory
+      during install (Closes: #566577).
+  * debian/xonix.install
+    - Add *.ad file install.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sat, 13 Feb 2010 15:18:55 +0200
+
+xonix (1.4-25) unstable; urgency=low
+
+  * Move to format: 3.0 (quilt).
+  * debian/clean
+    - Move content from debian/rules for dh(1).
+  * debian/control
+    - (Priority): Change from extra to optional (FTP masters;
+      override file fix)
+    - (Build-Depends): Remove dpatch.
+    - (Depends): add ${misc:Depends} for debhelper.
+    - (Standards-Version): Update to 3.8.3.
+  * debian/copyright
+    - Layout upgrade. Add FSF preamble.
+  * debian/debian-vars.mk
+    - New file.
+  * debian/patches
+    - Convert to quilt.
+    - (10=11, 10=11=12, 21, 22, 23): Add new patches to tackle
+      all compiling warning.
+    - (40) Change widget texts to neutral tone.
+  * debian/rules
+    - (MANSECT): Move from 1x to standard 1.
+    - Remove rules obsoleted by dh(1).
+  * debian/xonix.{dirs,install,manpages}
+    - Move content from debian/rules for dh(1).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Thu, 17 Dec 2009 17:48:05 +0200
+
+xonix (1.4-24) unstable; urgency=low
+
+  * New maintainer (Closes: #486775).
+  * debian/changelog
+    - Remove EOL whitespaces.
+  * debian/control
+    - (Build-Depend): Add dpatch.
+    - (Standards-Version): Update to 3.8.0.
+    - (Description): Justify text.
+  * debian/copyright
+    - Update to latest dh-make template.
+  * debian/{prerm,postinst}
+    - Add "set -e" (lintian fix).
+  * debian/patches/
+    - Convert single *diff.gz into individual patches.
+    - Patch manual page to use 6x (Closes: #440819).
+    - (40-xonix.ad.dpatch): New. Say simply 'Game over'.
+  * debian/watch
+    - New file.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Tue, 11 Nov 2008 20:50:02 +0200
+
+xonix (1.4-23) unstable; urgency=low
+
+  * QA upload.
+    + Set maintainer to QA group.
+  * Replace build-dependency on xutils with xutils-dev.
+  * Bump debhelper compat level from unspecified to 7.
+  * Also exclude libselinux-dev from build deps on kfreebsd-amd64
+    (closes: #451115)
+  * Fix chown call in postinst.
+  * Fix path to scores file in man page.
+
+ -- Frank Lichtenheld <djpig@debian.org>  Thu, 24 Jul 2008 02:57:31 +0200
+
+xonix (1.4-22) unstable; urgency=low
+
+  * use debian maintainer numbering, not debian NMU numbering (Doh!)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sun,  9 Jul 2006 10:05:26 +0100
+
+xonix (1.4-21.2) unstable; urgency=low
+
+  * ack of NMU - thanks Baruch
+  * libselinux build dependency only required for Linux (closes: #336947)
+  * reverted "no-turnaround" change as it breaks on captured ground.
+    (closes: #252821)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sun,  9 Jul 2006 09:33:33 +0100
+
+xonix (1.4-21.1) unstable; urgency=low
+
+  * NMU
+  * Fix build issues of gcc 4.0
+    (closes: #259939)
+  * Other build issues:
+    - New build dependency on libxp-dev
+    - New build dependency on libselinux-dev
+
+ -- Baruch Even <baruch@debian.org>  Tue,  9 Aug 2005 12:43:33 +0100
+
+xonix (1.4-21) unstable; urgency=high
+
+  * incorporate security fix from security team (closes: #243948)
+  * Drop privileges before invoking external mailer command when
+    highscores are achieved. (CAN-2004-0157)
+  * ignore U-turns rather than killing the player (closes: #244103)
+  * hopefully update build dependencies
+
+ -- Adrian Bridgett <bridgett@debian.org>  Mon,  3 May 2004 14:42:44 +0100
+
+xonix (1.4-20) unstable; urgency=low
+
+  * rebuild to pickup libxaw7-dev (closes: #169987)
+  * use dpkg-statoverride not suidmanager
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sun,  5 Jan 2003 13:37:24 +0000
+
+xonix (1.4-19) unstable; urgency=low
+
+  * patch from James Morrison so that xonix can compile on Hurd (closes: #107315)
+  * stop xonix losing scores - thanks to Norbert Warmuth <nwarmuth@privat.circular.de> (closes: #39600)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Tue,  7 Aug 2001 22:58:16 +0100
+
+xonix (1.4-18) unstable; urgency=low
+
+  * add libxaw-dev to build-depends (closes: #102801)
+  * move high scores to /var/games (better FHS compliance)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Mon,  2 Jul 2001 22:46:18 +0100
+
+xonix (1.4-17) unstable; urgency=low
+
+  * app-defaults files are conffiles
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sun,  4 Mar 2001 18:47:08 +0000
+
+xonix (1.4-16) unstable; urgency=low
+
+  * added xutils to build-depends (closes: #86973)
+  * use new location of app-defaults (closes: #86323)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sat,  3 Mar 2001 15:42:39 +0000
+
+xonix (1.4-15) unstable; urgency=low
+
+  * add Build-Depends (closes: #84670)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sun,  4 Feb 2001 18:32:18 +0000
+
+xonix (1.4-14) unstable; urgency=low
+
+  * FHS (/usr/share/*)
+  * recompile to fix dependencies (closes: #67961)
+
+ -- Adrian Bridgett <bridgett@debian.org>  Mon, 31 Jul 2000 21:50:33 +0100
+
+xonix (1.4-13) unstable; urgency=low
+
+  * removed icon="none" from menu entry
+  * fixed one line description
+
+ -- Adrian Bridgett <bridgett@debian.org>  Sat, 26 Dec 1998 16:39:40 +0000
+
+xonix (1.4-12) unstable; urgency=low
+
+  * fixed score file handling (no longer a conffile)
+  * moved manpage to /usr/man/man6
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Tue, 17 Mar 1998 22:22:11 +0000
+
+xonix (1.4-11) unstable; urgency=low
+
+  * compress manpage
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Thu, 12 Feb 1998 21:10:00 +0000
+
+xonix (1.4-10) unstable; urgency=low
+
+  * allow GECOS (name) fields of ",,," (finally fixes 16321!)
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Sat, 31 Jan 1998 13:09:04 +0000
+
+xonix (1.4-9) unstable; urgency=low
+
+  * another attempt to stop losing high-score (16321)
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Sun, 25 Jan 1998 16:07:45 +0000
+
+xonix (1.4-8) unstable; urgency=low
+
+  * lock high score table and don't open it twice (fixes 16321 hopefully)
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Tue, 20 Jan 1998 22:39:23 +0000
+
+xonix (1.4-7) unstable; urgency=low
+
+  * -h
+  * fixed dependencies [#12645, #12898, #13067]
+  * updated to standards 2.3.0.0
+  * fixed scores permissions [#5879]
+  * new maintaner
+
+ -- Adrian Bridgett <adrian.bridgett@poboxes.com>  Wed, 22 Oct 1997 19:16:04 +0000
+
+xonix (1.4-6.1) unstable; urgency=low
+
+  * non-maintainer release.
+  * libc6 compile.
+
+ -- Martin Mitchell <martin@debian.org>  Wed, 22 Oct 1997 20:42:43 +1000
+
+xonix (1.4-6) unstable; urgency=low
+
+  * updated to Standards-Version 2.1.0.0.
+
+ -- Sven Rudolph <sr1@inf.tu-dresden.de>  Thu, 24 Oct 1996 14:24:18 +0200
+
+Wed Aug 21 16:46:35 1996  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * debian.rules: set xonix and /var dir setgrp games (Bug#4219)
+        * debian.control: changed Priority: extra to optional
+
+Wed Jul 24 22:25:19 1996  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * 1.4-4 released
+        * debian.control: corrected extended description (Bug#3666)
+        * debian.rules: corrected multi-architecture support
+
+Mon Jun  3 12:29:46 1996  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * debian.control: changed Priority: Xtr to extra
+
+Sun Jun  2 19:56:15 1996  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * 1.4-3 released
+        * debian.control: added Architecture:, Section: and Priority:
+        * fixed permissions in /var (Bug#3184)
+        * fixed color in flyer.xpm (Bug#3175)
+        * debian.rules: handle Architecture: field
+
+Thu Jan 25 22:19:43 1996  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * added extended description (Bug#1966, Bug#1377)
+        * recompiled for ELF
+        * debian.control: adapted for ELF
+
+Thu Sep 14 19:09:20 1995  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * updated to version 1.4
+
+Mon Sep 11 23:22:17 1995  Sven Rudolph  <sr1@inf.tu-dresden.de>
+
+        * changed file locations according to FSSTND
+        * added Debian GNU/Linux package maintenance system files

@@ -1,0 +1,3 @@
+xonix		usr/games
+debian/xonix.png       usr/share/icons/hicolor/24x24/apps
+debian/xonix.desktop   usr/share/applications

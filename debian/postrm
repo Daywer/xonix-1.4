@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "purge" ]; then
+
+    if [ -d /var/cache/xonix ]; then
+	rm -rf /var/cache/xonix
+    fi
+fi
+
+#DEBHELPER#

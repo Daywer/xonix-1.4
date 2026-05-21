@@ -1,0 +1,27 @@
+From 9a817dc2ecb2a0550e0150c15f3f9e62237145ec Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Tue, 11 Nov 2008 19:31:11 +0200
+Subject: [PATCH] flyer.xpm: Fix color
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ flyer.xpm |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/flyer.xpm b/flyer.xpm
+index 52bfcb2..f7ff99e 100644
+--- a/flyer.xpm
++++ b/flyer.xpm
+@@ -2,7 +2,7 @@
+ static char * flyer_xpm[] = {
+ "8 8 3 1",
+ " 	c forest green",
+-".	g4 yellow	c tomato",
++".	c yellow",
+ "X	c black",
+ "   ..   ",
+ "  .XX.  ",
+-- 
+1.6.5
+

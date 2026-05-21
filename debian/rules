@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS	= hardening=+all
+export DEB_CFLAGS_MAINT_APPEND	= -Wall -pedantic -D__unix
+
+include /usr/share/dpkg/default.mk
+
+include /usr/share/debhelper/dh_package_notes/package-notes.mk
+
+# cat the makefile to verify what flags are being used
+override_dh_auto_build:
+	echo '#RUN imake'
+	xmkmf
+	echo '##REPLACE in Makefile'
+	sed -i -e 's/_BSD_SOURCE/_DEFAULT_SOURCE/g; s/_SVID_SOURCE/_DEFAULT_SOURCE/g' Makefile
+	echo '##BEGIN Makefile'
+	cat Makefile
+	echo '##END Makefile'
+	$(MAKE) CC='$(CC)' \
+		CCLINK='$(CC)' \
+		CDEBUGFLAGS='$(CFLAGS) $(CPPFLAGS) $(LDFLAGS)' \
+		XONIXDIR=/var/cache/xonix
+
+override_dh_auto_install:
+	dh_auto_install --destdir '$(CURDIR)/debian/xonix' -- INSTDATFLAGS='-m 0644'
+
+execute_after_dh_install:
+	# Remove unused directories
+	rm -rf debian/xonix/usr/lib debian/xonix/usr/bin
+
+%:
+	dh $@
+
+# End of file

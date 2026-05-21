@@ -1,0 +1,58 @@
+#
+# standard Makefile for xonix
+#
+# Makefile.std,v 1.2 1995/08/28 11:00:39 j Exp
+
+#PROJECTROOT=	/usr
+PROJECTROOT=    /usr
+
+LIBDIR=		$(PROJECTROOT)/lib/X11
+INCDIR=		$(PROJECTROOT)/include
+BINDIR=		$(PROJECTROOT)/bin
+MANDIR=		$(PROJECTROOT)/man/man1/
+
+INSTALL_EXE=	install -c -s
+#INSTALL_EXE=	cp
+INSTALL_DAT=	install -c
+#INSTALL_DAT=	cp
+RM=		rm -f
+MAKEDIRHIER=	mkdirhier
+#MAKEDIRHIER=	mkdir -p
+
+PROG=		xonix
+XONIXDIR=	$(LIBDIR)/xonix
+CUTE=		-DSEND_MAIL	# cute feature :-)
+
+XAWLIBS=	-lXaw -lXmu -lXt -lSM -lICE  -lXext -lX11
+XPMLIB=		-lXpm
+SYSLIBS=	-lm 
+
+#COPTS=		-O2 -pipe -m486
+COPTS=		-O
+EXTRA_DEFINES=	-DUSE_X11 -DXONIXDIR=\"$(XONIXDIR)\" $(CUTE)
+INCLUDES=	-I$(INCDIR)
+
+SRCS=		xonix.c x11.c stack.c
+OBJS=		xonix.o x11.o stack.o
+
+CFLAGS=		$(COPTS) $(EXTRA_DEFINES) $(INCLUDES)
+
+$(PROG): $(OBJS)
+	$(CC) $(CFLAGS) -o $(PROG) $(OBJS) -L$(LIBDIR) \
+	$(XAWLIBS) $(XPMLIB) $(SYSLIBS)
+
+clean:
+	$(RM) $(PROG) $(OBJS)
+
+install:
+	$(INSTALL_EXE) $(PROG) $(BINDIR)
+	$(INSTALL_DAT) Xonix.ad $(LIBDIR)/app-defaults/Xonix
+	if [ -d $(XONIXDIR) ] ; then	\
+		exit 0;			\
+	else				\
+		( umask 0; $(MAKEDIRHIER) $(XONIXDIR) ) ; \
+	fi
+
+install.man:
+	$(INSTALL_DAT) xonix.man $(MANDIR)/xonix.1
+

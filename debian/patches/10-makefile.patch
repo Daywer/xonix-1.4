@@ -1,0 +1,26 @@
+From abbeec9ec5f7d525ff14ad34c17c378cc7d9f279 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Tue, 11 Nov 2008 19:43:47 +0200
+Subject: [PATCH] Imakefile: Fix LOCAL_LIBRARIES
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ Imakefile |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/Imakefile b/Imakefile
+index 1821410..2621dd4 100644
+--- a/Imakefile
++++ b/Imakefile
+@@ -26,7 +26,7 @@ UnsharedLibReferences(XPM,Xpm,$(XPMSRC))
+            CUTE = -DSEND_MAIL	/* cute feature :-) */
+ 
+         DEPLIBS = XawClientDepLibs XpmDepLib
+-LOCAL_LIBRARIES = XawClientLibs XpmLib MathLibrary
++LOCAL_LIBRARIES = XawClientLibs XpmLib
+   EXTRA_DEFINES = -DUSE_X11 -DXONIXDIR=\"$(XONIXDIR)\" $(CUTE)
+ /*    CDEBUGFLAGS = DebuggableCDebugFlags */
+ 
+-- 
+1.6.5
+

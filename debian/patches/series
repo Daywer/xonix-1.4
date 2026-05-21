@@ -1,0 +1,9 @@
+10-makefile.patch
+10-makefile=11-x11.c-CAN-2004-0157-and-other.patch
+10-makefile=11-x11.c-CAN-2004-0157-and-other=12-compile-fixes.patch
+10-makefile=11-x11.c-CAN-2004-0157-and-other=13-double-free.patch
+15-xonix.c-compiling-fixes.patch
+20-flyer.xpm.patch
+30-manpage.patch
+40-xonix.ad.patch
+warnings.patch

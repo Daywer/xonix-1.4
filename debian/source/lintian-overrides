@@ -1,0 +1,9 @@
+# We use X-DH-Compat: 14
+#
+xonix source: debhelper-compat-file-is-missing
+xonix source: package-uses-deprecated-debhelper-compat-version 1
+
+# The "default" dependencies are added automatically by debhelper
+# in compat level 14.
+#
+xonix source: debhelper-but-no-misc-depends xonix
