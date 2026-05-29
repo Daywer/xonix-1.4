@@ -14,7 +14,7 @@ The main modification in this version is the ability to **start the game from an
 
 You can launch the game directly from a selected level using a command line argument.
 
-Supported levels: **1–9**.
+Supported levels: **1–99**.
 
 ### 🇷🇺 Русский
 
